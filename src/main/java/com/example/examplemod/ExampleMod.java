@@ -2,7 +2,12 @@ package com.example.examplemod;
 
 import com.example.examplemod.proxy.CommonProxy;
 
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemBlock;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -27,12 +32,15 @@ public class ExampleMod
 
     private static Logger mLogger;
 
+    private Block mBlock1;
+
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
         mLogger = event.getModLog();
         mLogger.info("Pre init {}", event);
         mProxy.PreInit(event);
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
     @EventHandler
@@ -54,13 +62,21 @@ public class ExampleMod
     @SubscribeEvent
     public void registerBlocks(RegistryEvent.Register<Block> event)
     {
-        event.getRegistry().register();
+        mBlock1 = new Block(Material.FIRE, MapColor.BLUE);
+        mBlock1.setUnlocalizedName("fubar");
+        mBlock1.setCreativeTab(CreativeTabs.REDSTONE);
+        mBlock1.setRegistryName("fubar");
+        mLogger.info("registerBlocks {}", mBlock1);
+        event.getRegistry().register(mBlock1);
     }
 
     @SubscribeEvent
     public void registerItems(RegistryEvent.Register<Item> event)
     {
-        event.getRegistry().register();
+        ItemBlock item = new ItemBlock(mBlock1);
+        item.setRegistryName(mBlock1.getRegistryName());
+        mLogger.info("registerItems {}", item);
+        event.getRegistry().register(item);
     }
 
 }
