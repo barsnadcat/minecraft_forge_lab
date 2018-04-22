@@ -1,5 +1,5 @@
 {
   "variants": {
-    "normal": { "model": "coal_block" }
+    "normal": { "model": "examplemod:cube_test" }
   }
 }
