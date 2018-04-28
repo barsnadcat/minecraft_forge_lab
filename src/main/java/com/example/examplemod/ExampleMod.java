@@ -4,9 +4,11 @@ import com.example.examplemod.proxy.CommonProxy;
 
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -77,6 +79,7 @@ public class ExampleMod
         item.setRegistryName(mBlock1.getRegistryName());
         mLogger.info("registerItems {}", item);
         event.getRegistry().register(item);
+        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(mBlock1.getRegistryName(), "inventory"));
     }
 
 }
