@@ -64,7 +64,7 @@ public class ExampleMod
     @SubscribeEvent
     public void registerBlocks(RegistryEvent.Register<Block> event)
     {
-        mBlock1 = new Block(Material.FIRE, MapColor.BLUE);
+        mBlock1 = new Block(Material.ROCK);
         mBlock1.setUnlocalizedName("fubar");
         mBlock1.setCreativeTab(CreativeTabs.REDSTONE);
         mBlock1.setRegistryName("fubar");
