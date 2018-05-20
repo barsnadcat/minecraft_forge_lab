@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -80,6 +81,12 @@ public class ExampleMod
         mLogger.info("registerItems {}", item);
         event.getRegistry().register(item);
         ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(mBlock1.getRegistryName(), "inventory"));
+    }
+
+    @SubscribeEvent
+    public void registerRecipes(RegistryEvent.Register<IRecipe> event)
+    {
+        mLogger.info("registerRecipes {}", event);
     }
 
 }
